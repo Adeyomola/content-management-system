@@ -1,0 +1,14 @@
+---
+- name: Convert Template Files
+  hosts: localhost
+  vars_files: secrets.yml
+  connection: local
+  tasks:
+  - name: Template db.yml
+    ansible.builtin.template:
+      src: db.yml.j2
+      dest: db.yml
+  - name: Template alert.yml
+    ansible.builtin.template:
+      src: alert.yml.j2
+      dest: alert.yml

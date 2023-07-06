@@ -1,0 +1,14 @@
+serviceMonitor:
+  # enabled should be set to true to enable prometheus-operator discovery of this service
+  enabled: true
+  additionalLabels:
+    release: prometheus
+
+mysql:
+  db: "altschool"
+  host: "db-service"
+  param: ""
+  pass: {{ db_password }}
+  port: {{ db_port }}
+  protocol: ""
+  user: {{ db_user }}
