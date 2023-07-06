@@ -13,3 +13,5 @@ variable "bucket_name" {
   description = "S3 Bucket Name"
   default       = "capstone-9-tfstate-bucket"
 }
+
+variable "arn" {}

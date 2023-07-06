@@ -26,8 +26,8 @@ data "aws_iam_policy_document" "backend_policy_document" {
     resources = ["arn:aws:s3:::${var.bucket_name}"]
     effect    = "Allow"
     principals {
-      type        = "*"
-      identifiers = ["*"]
+      type        = "AWS"
+      identifiers = [var.arn]
     }
   }
 
@@ -36,8 +36,8 @@ data "aws_iam_policy_document" "backend_policy_document" {
     resources = ["arn:aws:s3:::${var.bucket_name}/*"]
     effect    = "Allow"
     principals {
-      type        = "*"
-      identifiers = ["*"]
+      type        = "AWS"
+      identifiers = [var.arn]
     }
   }
 }
