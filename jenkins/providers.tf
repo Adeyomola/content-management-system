@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
-    bucket         = var.bucket_name
+    bucket         = "capstone-9-tfstate-bucket"
     key            = "jenkins/terraform.tfstate"
-    region         = var.region
-    dynamodb_table = var.table_name
+    region         = "eu-west-1"
+    dynamodb_table = "capstone_9_dynamodb"
   }
   required_providers {
     aws = {
