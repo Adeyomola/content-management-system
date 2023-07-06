@@ -65,3 +65,6 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
+# create Jenkins agent
+sudo docker run -d --rm --name=agent1 -p 256:22 -e "JENKINS_AGENT_SSH_PUBKEY=$(cat ~/.ssh/id_rsa.pub)" jenkins/ssh-agent:alpine
