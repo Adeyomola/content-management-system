@@ -37,6 +37,16 @@ pipeline {
                     retry(3)
 		}
         }
+        stage("Convert Template Files") {
+            steps {
+                script {
+                    dir("ansible") {
+                        sh "terraform init"
+                        sh "terraform apply -auto-approve"
+                    }
+                }
+            }
+        }
         stage("Deploy App") {
             steps {
                 script {
