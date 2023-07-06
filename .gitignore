@@ -32,3 +32,4 @@ terraform.rc
 # node exporter values file
 db.yml
 alert.yml
+secrets.yml
