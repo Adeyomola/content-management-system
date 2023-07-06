@@ -3,7 +3,8 @@ data "kubectl_path_documents" "manifests" {
   vars = {
     db_user         = var.db_user
     db_password     = var.db_password
-    db_port         = var.dp_port
+    db_port         = var.db_port
+    db_name	    = var.db_name
     ssl_certificate = data.terraform_remote_state.ssl.outputs.cert
   }
 }

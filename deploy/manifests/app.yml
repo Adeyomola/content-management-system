@@ -32,10 +32,7 @@ spec:
               name: db-secret
               key: db-password
         - name: WORDPRESS_DB_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: db-config
-              key: db-url
+          value: "db-service"
         - name: WORDPRESS_DB_PORT
           valueFrom:
             secretKeyRef:
@@ -43,6 +40,6 @@ spec:
               key: db-port
         - name: WORDPRESS_DB_NAME
           valueFrom:
-            configMapKeyRef:
-              name: db-config
+            secretKeyRef:
+              name: db-secret
               key: db-name
