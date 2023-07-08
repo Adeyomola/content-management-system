@@ -14,6 +14,7 @@ resource "acme_certificate" "cert" {
   dns_challenge {
     provider = "route53"
   }
+  recursive_nameservers        = ["8.8.8.8:53"]
 }
 
 resource "aws_acm_certificate" "cert" {
