@@ -1,5 +1,19 @@
 data "aws_availability_zones" "available" {}
 
+data "aws_ami" "ubuntu" {
+  most_recent = true
+  filter {
+    name  = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64*"]
+  }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"]
+}
+
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.19.0"
@@ -46,7 +60,7 @@ module "eks" {
 
   eks_managed_node_groups = {
     one = {
-ami_id = "ami-01dd271720c1ba44f"
+ami_id = data.aws_ami.ubuntu.id
       name           = "node-group-1"
       instance_types = ["t3.medium"]
       min_size       = 1
@@ -55,7 +69,7 @@ ami_id = "ami-01dd271720c1ba44f"
     }
 
     two = {
-ami_id = "ami-01dd271720c1ba44f"
+ami_id = data.aws_ami.ubuntu.id
       name           = "node-group-2"
       instance_types = ["t3.medium"]
       min_size       = 1
