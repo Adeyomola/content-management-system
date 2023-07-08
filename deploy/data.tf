@@ -9,10 +9,10 @@ data "kubectl_path_documents" "manifests" {
   }
 }
 
-data "kubernetes_service_v1" "lb" {
+data "kubernetes_ingress" "lb" {
   depends_on = [kubectl_manifest.deploy]
   metadata {
-    name      = "app-service"
-    namespace = var.namespaces_list[0]
+    name      = "app-ingress"
+    namespace = "default"
   }
 }
