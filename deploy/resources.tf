@@ -35,17 +35,16 @@ resource "aws_iam_role" "alb_controller_role" {
 
 resource "aws_iam_policy" "policy" {
   name   = "iam_policy"
-  policy = jsonencode(file("./manifests/iam_policy"))
+  policy = file("./manifests/iam_policy.json")
 }
 
 resource "aws_iam_role_policy_attachment" "attach_policy" {
-  role       = aws_iam_role.albcontroller_role.name
+  role       = aws_iam_role.alb_controller_role.name
   policy_arn = aws_iam_policy.policy.arn
 }
 
 resource "helm_release" "alb_controller" {
   name             = "alb-controller"
-  create_namespace = true
   namespace        = "kube-system"
   repository       = "https://aws.github.io/eks-charts"
   chart            = "aws-load-balancer-controller"
