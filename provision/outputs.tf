@@ -1,7 +1,7 @@
 output "cluster_certificate_authority_data" {
   description = "CLuster Certificate Authority Data"
   value       = module.eks.cluster_certificate_authority_data
-  sensitive = true
+  sensitive   = true
 }
 
 output "cluster_endpoint" {
