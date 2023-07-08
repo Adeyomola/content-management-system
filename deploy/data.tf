@@ -6,6 +6,7 @@ data "kubectl_path_documents" "manifests" {
     db_port         = var.db_port
     db_name         = var.db_name
     ssl_certificate = data.terraform_remote_state.ssl.outputs.cert
+    account_id      = var.account_id
   }
 }
 

@@ -1,5 +1,6 @@
 resource "kubernetes_namespace" "namespaces" {
-  for_each = var.namespaces
+  depends_on = [resource.helm_release.alb_controller]
+  for_each   = var.namespaces
   metadata {
     name = each.value
   }
@@ -19,13 +20,13 @@ resource "aws_iam_role" "alb_controller_role" {
       {
         "Effect" : "Allow",
         "Principal" : {
-          "Federated" : "arn:aws:iam::111122223333:oidc-provider/oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE"
+          "Federated" : "arn:aws:iam::${var.account_id}:oidc-provider/oidc.eks.${var.region}.amazonaws.com/id/${var.oidc_id}"
         },
         "Action" : "sts:AssumeRoleWithWebIdentity",
         "Condition" : {
           "StringEquals" : {
-            "oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:aud" : "sts.amazonaws.com",
-            "oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:sub" : "system:serviceaccount:kube-system:aws-load-balancer-controller"
+            "oidc.eks.${var.region}.amazonaws.com/id/${var.oidc_id}:aud" : "sts.amazonaws.com",
+            "oidc.eks.${var.region}.amazonaws.com/id/${var.oidc_id}::sub" : "system:serviceaccount:kube-system:aws-load-balancer-controller"
           }
         }
       }
@@ -44,12 +45,32 @@ resource "aws_iam_role_policy_attachment" "attach_policy" {
 }
 
 resource "helm_release" "alb_controller" {
-  name             = "alb-controller"
-  namespace        = "kube-system"
-  repository       = "https://aws.github.io/eks-charts"
-  chart            = "aws-load-balancer-controller"
-  wait             = false
-  values           = ["${file("../ansible/alb_controller.yml")}"]
+  depends_on = [aws_iam_role.alb_controller_role]
+  name       = "alb-controller"
+  namespace  = "kube-system"
+  repository = "https://aws.github.io/eks-charts"
+  chart      = "aws-load-balancer-controller"
+  wait       = false
+  set {
+    name  = "image.repository"
+    value = "public.ecr.aws/eks/aws-load-balancer-controller:v2.4.7"
+  }
+
+  set {
+    name  = "serviceAccount.create"
+    value = "false"
+  }
+
+  set {
+    name  = "serviceAccount.name"
+    value = "aws-load-balancer-controller"
+  }
+
+  set {
+    name  = "clusterName"
+    value = "capstone-9"
+  }
+  #  values           = ["${file("../ansible/alb_controller.yml")}"]
 }
 
 resource "helm_release" "prometheus" {
