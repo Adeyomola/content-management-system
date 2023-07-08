@@ -20,7 +20,7 @@ data "terraform_remote_state" "ssl" {
 
 terraform {
   backend "s3" {
-    bucket         = "captsone-9-tfstate-bucket"
+    bucket         = "capstone-9-tfstate-bucket"
     key            = "deploy/terraform.tfstate"
     region         = "eu-west-1"
     dynamodb_table = "capstone_9_dynamodb"
