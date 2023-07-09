@@ -1,5 +1,5 @@
 resource "kubernetes_namespace" "namespaces" {
-#  depends_on = [helm_release.alb_controller]
+  depends_on = [helm_release.alb_controller]
   for_each   = var.namespaces
   metadata {
     name = each.value

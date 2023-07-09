@@ -29,7 +29,7 @@ module "vpc" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "19.15.2"
+  version = "19.15.3"
 
   cluster_name    = local.cluster_name
   cluster_version = "1.27"
@@ -42,10 +42,10 @@ module "eks" {
 
   eks_managed_node_group_defaults = {
     ami_type       = "AL2_x86_64"
-    instance_types = ["t2.micro"]
-    min_size       = 2
-    max_size       = 3
-    desired_size   = 2
+    instance_types = ["t3.medium"]
+    min_size       = 1
+    max_size       = 5
+    desired_size   = 1
   }
 
   eks_managed_node_groups = {
