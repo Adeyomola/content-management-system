@@ -14,6 +14,6 @@ data "kubernetes_ingress" "lb" {
   depends_on = [kubectl_manifest.deploy]
   metadata {
     name      = "app-ingress"
-    namespace = "default"
+    namespace = "cms"
   }
 }

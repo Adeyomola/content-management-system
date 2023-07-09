@@ -10,14 +10,6 @@ spec:
     app: db
   ports:
     - protocol: TCP
-      port:
-      valueFrom:
-        secretKeyRef:
-          name: db-secret
-          key: db-port
-      targetPort:
-      valueFrom:
-        secretKeyRef:
-          name: db-secret
-          key: db-port
+      port: 5555
+      targetPort: 5555
       name: db-port
