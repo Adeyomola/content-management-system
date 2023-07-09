@@ -26,7 +26,7 @@ resource "aws_iam_role" "alb_controller_role" {
         "Condition" : {
           "StringEquals" : {
             "oidc.eks.${var.region}.amazonaws.com/id/${var.oidc_id}:aud" : "sts.amazonaws.com",
-            "oidc.eks.${var.region}.amazonaws.com/id/${var.oidc_id}::sub" : "system:serviceaccount:kube-system:aws-load-balancer-controller"
+            "oidc.eks.${var.region}.amazonaws.com/id/${var.oidc_id}:sub" : "system:serviceaccount:kube-system:aws-load-balancer-controller"
           }
         }
       }
@@ -288,7 +288,7 @@ resource "aws_iam_role_policy_attachment" "attach_policy" {
 
 resource "helm_release" "alb_controller" {
   depends_on = [aws_iam_role.alb_controller_role]
-  name       = "alb-controller"
+  name       = "aws-load-balancer-controller"
   namespace  = "kube-system"
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"

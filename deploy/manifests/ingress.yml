@@ -10,8 +10,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - hosts: cms.adeyomola.tech
-      http:
+    - http:
         paths:
         - path: /
           pathType: Prefix
