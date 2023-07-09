@@ -23,3 +23,8 @@ output "cluster_name" {
   description = "Kubernetes Cluster Name"
   value       = module.eks.cluster_name
 }
+
+output "oidc_provider" {
+  description = "The OpenID Connect identity provider"
+  value       = module.eks.oidc_provider
+}
