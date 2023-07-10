@@ -7,7 +7,7 @@ resource "kubernetes_namespace" "namespaces" {
 }
 
 resource "kubectl_manifest" "deploy" {
-  depends_on = [kubernetes_namespace.namespaces]
+  depends_on = [kubernetes_namespace.namespaces, helm_release.alb_controller]
   for_each   = toset(data.kubectl_path_documents.manifests.documents)
   yaml_body  = each.value
 }
@@ -20,13 +20,13 @@ resource "aws_iam_role" "alb_controller_role" {
       {
         "Effect" : "Allow",
         "Principal" : {
-          "Federated" : "arn:aws:iam::${var.account_id}:oidc-provider/oidc.eks.${var.region}.amazonaws.com/id/${var.oidc_id}"
+          "Federated" : "${data.terraform_remote_state.eks.outputs.oidc_arn}"
         },
         "Action" : "sts:AssumeRoleWithWebIdentity",
         "Condition" : {
           "StringEquals" : {
-            "oidc.eks.${var.region}.amazonaws.com/id/${var.oidc_id}:aud" : "sts.amazonaws.com",
-            "oidc.eks.${var.region}.amazonaws.com/id/${var.oidc_id}:sub" : "system:serviceaccount:kube-system:aws-load-balancer-controller"
+            "${data.terraform_remote_state.eks.outputs.oidc_provider}:aud" : "sts.amazonaws.com",
+            "${data.terraform_remote_state.eks.outputs.oidc_provider}:sub" : "system:serviceaccount:kube-system:aws-load-balancer-controller"
           }
         }
       }

@@ -4,7 +4,6 @@ variable "db_port" {}
 variable "db_name" {}
 
 variable "account_id" {}
-variable "oidc_id" {}
 
 variable "domain_name" {
   type    = string

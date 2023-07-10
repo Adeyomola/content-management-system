@@ -14,5 +14,9 @@ data "kubernetes_ingress_v1" "lb" {
   depends_on = [kubectl_manifest.deploy]
   metadata {
     name      = "app-ingress"
+    namespace = "cms"
+    annotations = {
+      "kubernetes.io/ingress.class" = "alb"
+    }
   }
 }
