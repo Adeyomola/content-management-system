@@ -17,9 +17,9 @@ spec:
     spec:
       containers:
       - name: db
-        image: adeyomola/app:latest
+        image: mariadb:latest
         ports:
-        - containerPort: 5555
+        - containerPort: ${db_port_d}
         env:
         - name: MYSQL_USER
           valueFrom:
@@ -37,8 +37,9 @@ spec:
               name: db-secret
               key: db-password
         - name: MYSQL_DATABASE
-          value: "capstone9"
-#          valueFrom:
-#            secretKeyRef:
-#              name: db-secret
-#              key: db-name
+          value: ${db_name_d}
+        - name: MYSQL_PORT
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: db-port

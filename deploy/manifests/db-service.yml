@@ -10,6 +10,6 @@ spec:
     app: db
   ports:
     - protocol: TCP
-      port: 5555
-      targetPort: 5555
+      port: ${db_port_d}
+      targetPort: ${db_port_d}
       name: db-port
