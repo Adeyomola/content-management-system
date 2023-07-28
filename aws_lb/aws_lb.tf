@@ -6,13 +6,13 @@ resource "aws_iam_role" "alb_controller_role" {
       {
         "Effect" : "Allow",
         "Principal" : {
-          "Federated" : "${module.eks.oidc_provider_arn}"
+          "Federated" : "${data.terraform_remote_state.eks.outputs.oidc_arn}"
         },
         "Action" : "sts:AssumeRoleWithWebIdentity",
         "Condition" : {
           "StringEquals" : {
-            "${module.eks.oidc_provider}:aud" : "sts.amazonaws.com",
-            "${module.eks.oidc_provider}:sub" : "system:serviceaccount:kube-system:aws-load-balancer-controller"
+            "${data.terraform_remote_state.eks.outputs.oidc_provider}:aud" : "sts.amazonaws.com",
+            "${data.terraform_remote_state.eks.outputs.oidc_provider}:sub" : "system:serviceaccount:kube-system:aws-load-balancer-controller"
           }
         }
       }
