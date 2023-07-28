@@ -50,6 +50,16 @@ pipeline {
                 }
             }
         }
+        stage("Ingress Controller") {
+            steps {
+                script {
+                    dir("aws_lb") {
+                        sh "terraform init"
+                        sh "terraform apply -auto-approve"
+                    }
+                }
+            }
+        }
         stage("Deploy App") {
             steps {
                 script {

@@ -44,3 +44,19 @@ spec:
 #            secretKeyRef:
 #              name: db-secret
 #              key: db-port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+  namespace: cms
+  labels:
+    app: db
+spec:
+  selector:
+    app: db
+  ports:
+    - protocol: TCP
+      port: ${db_port_d}
+      targetPort: ${db_port_d}
+      name: db-port
