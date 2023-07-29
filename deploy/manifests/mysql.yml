@@ -7,6 +7,8 @@ metadata:
     app: db
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: db
@@ -15,6 +17,10 @@ spec:
       labels:
         app: db
     spec:
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
       containers:
       - name: db
         image: mariadb:latest
@@ -40,20 +46,6 @@ spec:
           value: "${db_name_d}"
         - name: MYSQL_PORT
           value: "${db_port_d}"
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: db-service
-  namespace: cms
-  labels:
-    app: db
-spec:
-  selector:
-    app: db
-  ports:
-    - protocol: TCP
-      port: ${db_port_d}
-      targetPort: ${db_port_d}
-      name: db-port
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
