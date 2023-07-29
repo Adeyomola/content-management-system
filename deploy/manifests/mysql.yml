@@ -23,7 +23,7 @@ spec:
           claimName: mysql-pv-claim
       containers:
       - name: db
-        image: mariadb:latest
+        image: mariadb:lts-jammy
         ports:
         - containerPort: ${db_port_d}
         env:
@@ -44,8 +44,6 @@ spec:
               key: db-password
         - name: MYSQL_DATABASE
           value: "${db_name_d}"
-        - name: MYSQL_PORT
-          value: "${db_port_d}"
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql

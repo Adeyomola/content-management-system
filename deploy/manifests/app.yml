@@ -23,7 +23,7 @@ spec:
           claimName: wp-pv-claim
       containers:
       - name: app
-        image: wordpress:php8.2-apache
+        image: wordpress:6.2.2-apache
         ports:
         - containerPort: 80
         volumeMounts:
