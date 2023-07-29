@@ -35,16 +35,9 @@ spec:
           value: "db-service"
         - name: WORDPRESS_DB_PORT
           value: "${db_port_d}"
-#          valueFrom:
-#            secretKeyRef:
-#              name: db-secret
-#              key: db-port
         - name: WORDPRESS_DB_NAME
           value: "${db_name_d}"
-#          valueFrom:
-#            secretKeyRef:
-#              name: db-secret
-#              key: db-name
+
 ---
 apiVersion: v1
 kind: Service

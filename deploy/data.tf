@@ -9,6 +9,10 @@ data "kubectl_path_documents" "manifests" {
     db_name_d       = var.db_name_d
     ssl_certificate = data.terraform_remote_state.ssl.outputs.cert
   }
+  sensitive_vars = {
+    cert = base64encode(data.terraform_remote_state.ssl.outputs.certificate)
+    key  = base64encode(data.terraform_remote_state.ssl.outputs.key)
+  }
 }
 
 data "kubernetes_ingress_v1" "lb" {
