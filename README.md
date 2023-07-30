@@ -32,11 +32,23 @@ Then encrypt the secrets.yml file with ansible vault.
 - Create four secret texts with IDs: 
   * AWS_ACCESS_KEY_ID
   * AWS_SECRET_ACCESS_KEY
-  * TF_VAR_account_id=[AWS Account ID]
-  * TF_VAR_db_user=[Database Username in Base64]
-  * TF_VAR_db_password=[Database Password in Base64]
-  * TF_VAR_db_port=[Database Port Number]
-  * TF_VAR_db_name=[Database Name]
-  * TF_VAR_arn=[AWS ARN]
-  * TF_VAR_email=[email address for SSL certificate]
-- Then Build
+  * TF_VAR_account_id
+  * TF_VAR_db_user
+  * TF_VAR_db_password
+  * TF_VAR_db_port
+  * TF_VAR_db_name
+  * TF_VAR_arn
+  * TF_VAR_email
+- Then Build.
+
+### Values for Jenkins Credentials
+
+  * Value for `AWS_ACCESS_KEY_ID` should be AWS access key ID 
+  * Value for `AWS_SECRET_ACCESS_KEY` should be AWS secret access key
+  * Value for `TF_VAR_account_id` should be AWS Account ID
+  * Value for `TF_VAR_db_user` should be database username in Base64
+  * Value for `TF_VAR_db_password` should be database password in Base64
+  * Value for `TF_VAR_db_port` should be database port number
+  * Value for `TF_VAR_db_name` should be database name
+  * Value for `TF_VAR_arn` should be AWS ARN
+  * Value for `TF_VAR_email` should be email address for SSL certificate
