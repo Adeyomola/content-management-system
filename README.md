@@ -30,13 +30,13 @@ Then encrypt the secrets.yml file with ansible vault.
 - Create a password file; add your ansible vault password to that file.
 - Then upload the file to a secret file credential with ID: `ANSIBLE_VAULT_PASSWORD_FILE`.
 - Create four secret texts with IDs: 
-* AWS_ACCESS_KEY_ID
-* AWS_SECRET_ACCESS_KEY
-* TF_VAR_account_id=[AWS Account ID]
-* TF_VAR_db_user=[Database Username in Base64]
-* TF_VAR_db_password=[Database Password in Base64]
-* TF_VAR_db_port=[Database Port Number]
-* TF_VAR_db_name=[Database Name]
-* TF_VAR_arn=[AWS ARN]
-* TF_VAR_email=[email address for SSL certificate]
+  * AWS_ACCESS_KEY_ID
+  * AWS_SECRET_ACCESS_KEY
+  * TF_VAR_account_id=[AWS Account ID]
+  * TF_VAR_db_user=[Database Username in Base64]
+  * TF_VAR_db_password=[Database Password in Base64]
+  * TF_VAR_db_port=[Database Port Number]
+  * TF_VAR_db_name=[Database Name]
+  * TF_VAR_arn=[AWS ARN]
+  * TF_VAR_email=[email address for SSL certificate]
 - Then Build
