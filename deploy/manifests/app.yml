@@ -43,6 +43,6 @@ spec:
         - name: WORDPRESS_DB_HOST
           value: "db-service"
         - name: WORDPRESS_DB_PORT
-          value: "${db_port_d}"
+          value: "${db_port}"
         - name: WORDPRESS_DB_NAME
-          value: "${db_name_d}"
+          value: "${db_name}"

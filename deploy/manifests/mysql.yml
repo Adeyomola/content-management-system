@@ -25,7 +25,7 @@ spec:
       - name: db
         image: mariadb:lts-jammy
         ports:
-        - containerPort: ${db_port_d}
+        - containerPort: ${db_port}
         env:
         - name: MYSQL_USER
           valueFrom:
@@ -43,7 +43,7 @@ spec:
               name: db-secret
               key: db-password
         - name: MYSQL_DATABASE
-          value: "${db_name_d}"
+          value: "${db_name}"
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql

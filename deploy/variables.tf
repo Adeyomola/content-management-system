@@ -2,8 +2,6 @@ variable "db_user" {}
 variable "db_password" {}
 variable "db_port" {}
 variable "db_name" {}
-variable "db_port_d" {}
-variable "db_name_d" {}
 
 variable "domain_name" {
   type    = string
