@@ -12,6 +12,7 @@ pipeline {
         TF_VAR_db_port = credentials ('TF_VAR_db_port')
         TF_VAR_arn = credentials ('TF_VAR_arn')
         TF_VAR_email = credentials('TF_VAR_email')
+        TF_VAR_account_id = credentials('TF_VAR_account_id')
     }
     stages {
         stage("Create Cluster With Prometheus and Grafana") {
