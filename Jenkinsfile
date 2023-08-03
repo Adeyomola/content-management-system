@@ -8,6 +8,8 @@ pipeline {
         ANSIBLE_VAULT_PASSWORD_FILE = credentials('ANSIBLE_VAULT_PASSWORD_FILE')
         TF_VAR_db_user = credentials ('TF_VAR_db_user')
         TF_VAR_db_password = credentials ('TF_VAR_db_password')
+        TF_VAR_db_user_d = credentials ('TF_VAR_db_user_d')
+        TF_VAR_db_password_d = credentials ('TF_VAR_db_password_d')
         TF_VAR_db_name = credentials ('TF_VAR_db_name')
         TF_VAR_db_port = credentials ('TF_VAR_db_port')
         TF_VAR_arn = credentials ('TF_VAR_arn')
