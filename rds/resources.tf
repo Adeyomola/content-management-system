@@ -3,7 +3,7 @@ resource "aws_db_instance" "rds" {
   db_name              = var.db_name
   engine               = "mysql"
   engine_version       = "5.7"
-  instance_class       = "db.t2.micro"
+  instance_class       = "db.t2.medium"
   username             = var.db_user_d
   password             = var.db_password_d
   port                 = var.db_port
