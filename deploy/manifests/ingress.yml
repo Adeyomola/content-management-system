@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   namespace: cms
@@ -23,10 +23,14 @@ spec:
         paths:
         - path: /*
           backend:
-            serviceName: ssl-redirect
-            servicePort: use-annotation
+            service:
+              name: ssl-redirect
+              port:
+                number: use-annotation
         - path: /*
           pathType: Prefix
           backend:
-            serviceName: app-service
-            servicePort: 80
+            service:
+              name: app-service
+              port:
+                number: 80
