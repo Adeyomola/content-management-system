@@ -13,16 +13,21 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-#---
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  name: db-service
-#  namespace: cms
-#  labels:
-#    app: db
-#spec:
-#  selector:
-#    app: db
-#  ports:
-#    - port: ${db_port}
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+  namespace: cms
+  labels:
+    app: db
+spec:
+  selector:
+    app: db
+  ports:
+    - port: ${db_port}

@@ -6,9 +6,7 @@ metadata:
   labels:
     app: app
 spec:
-  replicas: 2
-  strategy:
-    type: Recreate
+  replicas: 1
   selector:
     matchLabels:
       app: app
@@ -41,7 +39,7 @@ spec:
               name: db-secret
               key: db-password
         - name: WORDPRESS_DB_HOST
-          value: "${rds_address}"
+          value: db-service.cms.svc.cluster.local
         - name: WORDPRESS_DB_PORT
           value: "${db_port}"
         - name: WORDPRESS_DB_NAME

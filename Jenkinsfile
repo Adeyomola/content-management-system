@@ -63,16 +63,16 @@ pipeline {
                 }
             }
         }
-        stage("Deploy DB") {
-            steps {
-                script {
-                    dir("rds") {
-                        sh "terraform init"
-                        sh "terraform apply -auto-approve"
-                    }
-                }
-            }
-        }
+//        stage("Deploy DB") {
+//           steps {
+//                script {
+//                    dir("rds") {
+//                        sh "terraform init"
+//                        sh "terraform apply -auto-approve"
+//                    }
+//                }
+//            }
+//        }
         stage("Deploy App") {
             steps {
                 script {

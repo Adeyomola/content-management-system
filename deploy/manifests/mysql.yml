@@ -1,49 +1,55 @@
-#apiVersion: apps/v1
-#kind: Deployment
-#metadata:
-#  namespace: cms
-#  name: db-deployment
-#  labels:
-#    app: db
-#spec:
-#  replicas: 1
-#  strategy:
-#    type: Recreate
-#  selector:
-#    matchLabels:
-#      app: db
-#  template:
-#    metadata:
-#      labels:
-#        app: db
-#    spec:
-#      volumes:
-#      - name: mysql-persistent-storage
-#        persistentVolumeClaim:
-#          claimName: mysql-pv-claim
-#      containers:
-#      - name: db
-#        image: mariadb:lts-jammy
-#        ports:
-#        - containerPort: ${db_port}
-#        env:
-#        - name: MYSQL_USER
-#          valueFrom:
-#            secretKeyRef:
-#              name: db-secret
-#              key: db-user
-#        - name: MYSQL_ROOT_PASSWORD
-#          valueFrom:
-#            secretKeyRef:
-#              name: db-secret
-#              key: db-password
-#        - name: MYSQL_PASSWORD
-#          valueFrom:
-#            secretKeyRef:
-#              name: db-secret
-#              key: db-password
-#        - name: MYSQL_DATABASE
-#          value: "${db_name}"
-#        volumeMounts:
-#        - name: mysql-persistent-storage
-#          mountPath: /var/lib/mysql
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: cms
+  name: db-deployment
+  labels:
+    app: db
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: db
+  serviceName: db-service
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
+      containers:
+      - name: db
+        image: mariadb:lts-jammy
+        ports:
+        - containerPort: ${db_port}
+        resources:
+            limits:
+              memory: 512Mi
+            requests:
+              memory: 256Mi
+        env:
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: db-user
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: db-password
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: db-password
+        - name: MYSQL_DATABASE
+          value: "${db_name}"
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql

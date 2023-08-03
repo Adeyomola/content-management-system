@@ -6,7 +6,7 @@ data "kubectl_path_documents" "manifests" {
     db_port         = var.db_port
     db_name         = var.db_name
     ssl_certificate = data.terraform_remote_state.ssl.outputs.cert
-    rds_address     = data.terraform_remote_state.rds.outputs.rds_address
+    #    rds_address     = data.terraform_remote_state.rds.outputs.rds_address
   }
 }
 
