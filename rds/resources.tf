@@ -4,8 +4,8 @@ resource "aws_db_instance" "rds" {
   engine               = "mysql"
   engine_version       = "5.7"
   instance_class       = "db.t2.micro"
-  username             = var.db_user
-  password             = var.db_password
+  username             = base64decode(var.db_user)
+  password             = base64decode(var.db_password)
   port                 = var.db_port
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
