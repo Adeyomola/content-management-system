@@ -21,13 +21,7 @@ spec:
     - host: "cms.adeyomola.tech"
       http:
         paths:
-        - path: /*
-          backend:
-            service:
-              name: ssl-redirect
-              port:
-                number: use-annotation
-        - path: /*
+        - path: /
           pathType: Prefix
           backend:
             service:
