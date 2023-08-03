@@ -54,7 +54,17 @@ pipeline {
         stage("Ingress Controller") {
             steps {
                 script {
-                    dir("aws_lb") {
+                    dir("alb") {
+                        sh "terraform init"
+                        sh "terraform apply -auto-approve"
+                    }
+                }
+            }
+        }
+        stage("Deploy DB") {
+            steps {
+                script {
+                    dir("rds") {
                         sh "terraform init"
                         sh "terraform apply -auto-approve"
                     }

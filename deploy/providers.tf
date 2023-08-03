@@ -18,6 +18,16 @@ data "terraform_remote_state" "ssl" {
   }
 }
 
+data "terraform_remote_state" "rds" {
+  backend = "s3"
+
+  config = {
+    key    = "rds/terraform.tfstate"
+    bucket = "capstone-9-tfstate-bucket"
+    region = "eu-west-1"
+  }
+}
+
 terraform {
   backend "s3" {
     bucket         = "capstone-9-tfstate-bucket"
