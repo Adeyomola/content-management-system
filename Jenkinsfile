@@ -15,7 +15,7 @@ pipeline {
         TF_VAR_arn = credentials ('TF_VAR_arn')
         TF_VAR_email = credentials('TF_VAR_email')
         TF_VAR_account_id = credentials('TF_VAR_account_id')
-	DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+//	DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
     stages {
         stage("Docker Image Build") {
@@ -29,9 +29,10 @@ pipeline {
         }
         stage("Docker Image Push") {
             steps {
+              withCredentials ([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')])
                 script {
                     dir("docker") {
-		        sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+		        sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
                         sh "docker tag docker-app adeyomola/wordpress"
 		        sh "docker push adeyomola/wordpress"
                     }
