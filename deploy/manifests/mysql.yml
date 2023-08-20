@@ -24,7 +24,7 @@ spec:
           claimName: mysql-pv-claim
       containers:
       - name: db
-        image: mariadb:lts
+        image: mysql
         ports:
         - containerPort: ${db_port}
         resources:
