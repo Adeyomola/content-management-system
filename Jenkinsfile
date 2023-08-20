@@ -32,8 +32,8 @@ pipeline {
                 script {
                     dir("docker") {
 		        sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
-                        sh "docker tag docker-app adeyomola/wordpress && docker tag docker-mysql adeyomola/mysql"
-		        sh "docker push adeyomola/wordpress && docker push adeyomola/mysql"
+                        sh "docker tag docker-app adeyomola/wordpress"
+		        sh "docker push adeyomola/wordpress"
                     }
                  }
              }
