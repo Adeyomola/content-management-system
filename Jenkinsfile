@@ -29,7 +29,7 @@ pipeline {
         }
         stage("Docker Image Push") {
             steps {
-              withCredentials ([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')])
+              withCredentials ([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
                 script {
                     dir("docker") {
 		        sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
@@ -37,6 +37,7 @@ pipeline {
 		        sh "docker push adeyomola/wordpress"
                     }
                  }
+	       }
              }
         }
         stage("Create Cluster With Prometheus and Grafana") {
