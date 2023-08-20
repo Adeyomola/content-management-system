@@ -11,7 +11,7 @@ services:
       network: host
     container_name: wordpress
     working_dir: /var/www/html/wordpress
-    volume:
+    volumes:
       - ./wordpress/:/var/www/html/wordpress/
     ports:
       - "80:80"
