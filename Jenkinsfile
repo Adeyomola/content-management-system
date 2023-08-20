@@ -21,16 +21,16 @@ pipeline {
         stage("Docker Image Build") {
             steps {
                 script {
-                    sh "sudo docker build . -t wp"
+                    sh "docker build . -t wp"
                 }
              }
         }
         stage("Docker Image Push") {
             steps {
                 script {
-		    sh "echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
-                    sh "sudo docker tag wp adeyomola/wordpress"
-		    sh "sudo docker push adeyomola/wordpress"
+		    sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+                    sh "docker tag wp adeyomola/wordpress"
+		    sh "docker push adeyomola/wordpress"
                 }
              }
         }
