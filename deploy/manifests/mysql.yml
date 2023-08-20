@@ -24,7 +24,7 @@ spec:
           claimName: mysql-pv-claim
       containers:
       - name: db
-        image: adeyomola/mysql
+        image: mysql:8.0-debian
         ports:
         - containerPort: ${db_port}
         resources:
