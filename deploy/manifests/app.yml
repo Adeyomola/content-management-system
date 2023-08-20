@@ -28,19 +28,17 @@ spec:
         - name: wordpress-persistent-storage
           mountPath: /var/www/html
         env:
-        - name: WORDPRESS_DB_USER
+        - name: DB_USER
           valueFrom:
             secretKeyRef:
               name: db-secret
               key: db-user
-        - name: WORDPRESS_DB_PASSWORD
+        - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: db-secret
               key: db-password
-        - name: WORDPRESS_DB_HOST
+        - name: DB_HOST
           value: db-service.cms.svc.cluster.local
-        - name: WORDPRESS_DB_PORT
-          value: "${db_port}"
-        - name: WORDPRESS_DB_NAME
+        - name: DB_NAME
           value: "${db_name}"
