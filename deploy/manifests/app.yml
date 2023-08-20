@@ -21,7 +21,7 @@ spec:
           claimName: wp-pv-claim
       containers:
       - name: app
-        image: wordpress:6.2.2-apache
+        image: adeyomola/wordpress
         ports:
         - containerPort: 80
         volumeMounts:

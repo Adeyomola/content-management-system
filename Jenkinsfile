@@ -15,8 +15,25 @@ pipeline {
         TF_VAR_arn = credentials ('TF_VAR_arn')
         TF_VAR_email = credentials('TF_VAR_email')
         TF_VAR_account_id = credentials('TF_VAR_account_id')
+	DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
     stages {
+        stage("Docker Image Build") {
+            steps {
+                script {
+                    sh "docker build . -t wp"
+                }
+             }
+        }
+        stage("Docker Image Push") {
+            steps {
+                script {
+		    sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+                    sh "docker tag wp adeyomola/wordpress"
+		    sh "docker push adeyomola/wordpress"
+                }
+             }
+        }
         stage("Create Cluster With Prometheus and Grafana") {
             steps {
                 script {
@@ -82,6 +99,11 @@ pipeline {
                     }
                 }
             }
+        }
+    }
+    post {
+      always {
+        sh 'docker logout'
         }
     }
 }
