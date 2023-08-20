@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     dir("docker") {
-                        sh "docker compose build"
+                        sh "docker compose build --no-cache"
                     }
                  }
              }
