@@ -6,7 +6,7 @@ EXPOSE 443
 
 # copy wp-config editor and apache config to container.
 COPY ./app.conf /etc/apache2/sites-enabled/000-default.conf
-COPY wordpress /var/www/html/wordpress
+COPY wordpress /var/www/html/
 
 # environment variables
 ENV app=/var/www/html/wordpress
