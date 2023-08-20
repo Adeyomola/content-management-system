@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     dir("docker") {
-                        sh "docker compose build --no-cache"
+                        sh "docker build . -t wp --no-cache"
                     }
                  }
              }
@@ -32,8 +32,8 @@ pipeline {
               withCredentials ([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
                 script {
                     dir("docker") {
-		        sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
-                        sh "docker tag docker-app adeyomola/wordpress"
+		        sh "echo ${env.dockerhubPassword} | docker login -u ${env.dockerhubUser} --password-stdin"
+                        sh "docker tag wp adeyomola/wordpress"
 		        sh "docker push adeyomola/wordpress"
                     }
                  }
