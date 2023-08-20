@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     dir("docker") {
-                        sh "docker build -t wp ."
+                        sh "docker compose build"
                     }
                  }
              }
@@ -32,7 +32,7 @@ pipeline {
                 script {
                     dir("docker") {
 		        sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
-                        sh "docker tag wp adeyomola/wordpress"
+                        sh "docker tag docker-wordpress adeyomola/wordpress"
 		        sh "docker push adeyomola/wordpress"
                     }
                  }
