@@ -18,10 +18,10 @@ spec:
       labels:
         app: db
     spec:
-      volumes:
-      - name: mysql-persistent-storage
-        persistentVolumeClaim:
-          claimName: mysql-pv-claim
+#      volumes:
+#      - name: mysql-persistent-storage
+#        persistentVolumeClaim:
+#          claimName: mysql-pv-claim
       containers:
       - name: db
         image: mariadb:lts
@@ -50,6 +50,6 @@ spec:
               key: db-password
         - name: MYSQL_DATABASE
           value: "${db_name}"
-        volumeMounts:
-        - name: mysql-persistent-storage
-          mountPath: /var/lib/mysql
+#        volumeMounts:
+#        - name: mysql-persistent-storage
+#          mountPath: /var/lib/mysql

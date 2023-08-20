@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     dir("docker") {
-                        sh "docker build . -t wp --no-cache"
+                        sh "docker build . -t wp"
                     }
                  }
              }
@@ -38,7 +38,7 @@ pipeline {
                     }
                  }
 	       }
-             }
+            }
         }
         stage("Create Cluster With Prometheus and Grafana") {
             steps {
