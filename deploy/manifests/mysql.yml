@@ -34,16 +34,17 @@ spec:
               memory: 256Mi
         env:
         - name: MYSQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: db-secret
-              key: db-user
-        - name: MYSQL_ROOT_PASSWORD
-          value: rootpassword
+          value: adeyomola
 #          valueFrom:
 #            secretKeyRef:
 #              name: db-secret
-#              key: db-password
+#              key: db-user
+        - name: MYSQL_ROOT_PASSWORD
+#          value: rootpassword
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: db-password
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
