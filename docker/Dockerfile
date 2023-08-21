@@ -6,6 +6,7 @@ EXPOSE 443
 
 # copy wp-config editor and apache config to container.
 COPY app.conf /etc/apache2/sites-enabled/000-default.conf
+COPY ./scripts/config_editor.sh /usr/local/bin/
 RUN mkdir /var/www/html/wordpress
 COPY wordpress /var/www/html/wordpress
 
@@ -22,4 +23,4 @@ RUN docker-php-ext-install pdo pdo_mysql mysqli bcmath zip gd
 WORKDIR $app
 RUN ["/bin/bash", "-c", "chmod 755 -R $app && chown www-data:www-data -R $app"]
 
-ENTRYPOINT ["/bin/bash", "-c", "service apache2 restart && tail -f /dev/null"]
+ENTRYPOINT ["/bin/bash", "-c", "config_editor.sh && service apache2 restart && tail -f /dev/null"]
