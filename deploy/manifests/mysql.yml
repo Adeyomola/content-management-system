@@ -33,23 +33,31 @@ spec:
             requests:
               memory: 256Mi
         env:
-        - name: MARIADB_USER
+        - name: MYSQL_USER
           valueFrom:
             secretKeyRef:
               name: db-secret
               key: db-user
-        - name: MARIADB_ROOT_PASSWORD
+        - name: MYSQL_ROOT_PASSWORD
+          value: rootpassword
+#          valueFrom:
+#            secretKeyRef:
+#              name: db-secret
+#              key: db-password
+        - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
               name: db-secret
               key: db-password
-        - name: MARIADB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: db-secret
-              key: db-password
-        - name: MARIADB_DATABASE
+        - name: MYSQL_DATABASE
           value: "${db_name}"
 #        volumeMounts:
 #        - name: mysql-persistent-storage
 #          mountPath: /var/lib/mysql
+      - name: phpmyadmin
+        image: bitnami/phpmyadmin:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATABASE_HOST
+          value: db-service
