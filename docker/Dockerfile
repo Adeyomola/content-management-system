@@ -21,6 +21,8 @@ RUN ["/bin/bash", "-c", "apt update -y && apt install git wget zlib1g-dev libzip
 RUN docker-php-ext-install pdo pdo_mysql mysqli bcmath zip gd
 
 WORKDIR $app
-RUN ["/bin/bash", "-c", "chmod 755 -R $app && chown www-data:www-data -R $app"]
+RUN ["/bin/bash", "-c", "touch .htaccess && echo "<ifModule mod_headers.c> \
+Header always set Content-Security-Policy "upgrade-insecure-requests;" \
+</IfModule>" > .htacess && chmod 755 -R $app && chown www-data:www-data -R $app"]
 
 ENTRYPOINT ["/bin/bash", "-c", "config_editor.sh && service apache2 restart && tail -f /dev/null"]
