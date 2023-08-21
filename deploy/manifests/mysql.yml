@@ -40,16 +40,17 @@ spec:
 #              name: db-secret
 #              key: db-user
         - name: MYSQL_ROOT_PASSWORD
-#          value: rootpassword
-          valueFrom:
-            secretKeyRef:
-              name: db-secret
-              key: db-password
+          value: rootpassword
+#          valueFrom:
+#            secretKeyRef:
+#              name: db-secret
+#              key: db-password
         - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: db-secret
-              key: db-password
+          value: userpassword
+#          valueFrom:
+#            secretKeyRef:
+#              name: db-secret
+#              key: db-password
         - name: MYSQL_DATABASE
           value: "${db_name}"
 #        volumeMounts:
