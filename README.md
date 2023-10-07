@@ -1,3 +1,5 @@
+# This project contains source code for a Jenkins CI/CD pipeline
+
 ## ANSIBLE VARIABLES
 
 Create the following variables in a file called secrets.yml
