@@ -1,4 +1,5 @@
-# This project contains source code for a Jenkins CI/CD pipeline
+# Jenkins CI/CD pipeline for Wordpress
+- This project contains the source for a Jenkins CI/CD Pipeline that integrates and deploys WordPress on AWS EKS
 
 ## ANSIBLE VARIABLES
 
