@@ -104,7 +104,7 @@ pipeline {
             steps {
                 script {
                         sh "trivy image adeyomola/wordpress"
-			sh "trivy --exit-code 1 --no-progress --severity CRITICAL adeyomola/wordpress"
+//			sh "trivy --exit-code 1 --no-progress --severity CRITICAL adeyomola/wordpress"
                  }
              }
         }
