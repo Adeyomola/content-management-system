@@ -100,6 +100,13 @@ pipeline {
 //                }
 //            }
 //        }
+        stage("Scan Image") {
+            steps {
+                script {
+                        sh "trivy image adeyomola/wordpress"
+                 }
+             }
+        }
         stage("Deploy App") {
             steps {
                 script {
