@@ -5,8 +5,10 @@
 - Then it provisions an EKS Kubernetes cluster on AWS.
 - After that, it creates a Let's Encrypt SSL Certificate
 - Then it provisions an application load balancer on AWS using Terraform
-- Then it deploys WordPress
+- Then it deploys WordPress.
 
+
+# How to Use It
 ## ANSIBLE VARIABLES
 
 Create the following variables in a file called secrets.yml
