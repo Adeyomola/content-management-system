@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     dir("docker") {
-                        sh "docker build . -t wp"
+                        sh "sudo docker build . -t wp"
                     }
                  }
              }
