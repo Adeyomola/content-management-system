@@ -1,10 +1,11 @@
 # Jenkins CI/CD Pipeline for Wordpress
 - This repo contains the source for a Jenkins CI/CD Pipeline that integrates and deploys WordPress on AWS EKS
 - The Pipeline script builds a container image of our custom WordPress installation using Docker.
-- Then it pushes the image to Docker HUb.
+- Then it pushes the image to Docker Hub.
 - Then it provisions an EKS Kubernetes cluster on AWS.
-- After that, it creates a Let's Encrypt SSL Certificate
+- After that, it creates a Let's Encrypt SSL Certificate.
 - Then it provisions an application load balancer on AWS using Terraform
+- Next, it scans the docker image for vulnerabilities using Trivy.
 - Then it deploys WordPress.
 
 
@@ -40,7 +41,9 @@ Then encrypt the secrets.yml file with ansible vault.
 
 - Create a password file; add your ansible vault password to that file.
 - Then upload the file to a secret file credential with ID: `ANSIBLE_VAULT_PASSWORD_FILE`.
-- Create four secret texts with IDs: 
+- Create a "Username with Password" credential with ID: `dockerhub`.
+  * Enter your Docker Hub username in the username field and your password in the password field
+- Create nine secret texts with IDs: 
   * AWS_ACCESS_KEY_ID
   * AWS_SECRET_ACCESS_KEY
   * TF_VAR_account_id
@@ -50,7 +53,6 @@ Then encrypt the secrets.yml file with ansible vault.
   * TF_VAR_db_name
   * TF_VAR_arn
   * TF_VAR_email
-- Then Build.
 
 ### Values for Jenkins Credentials
 
@@ -63,3 +65,5 @@ Then encrypt the secrets.yml file with ansible vault.
   * Value for `TF_VAR_db_name` should be database name
   * Value for `TF_VAR_arn` should be AWS ARN
   * Value for `TF_VAR_email` should be email address for SSL certificate
+
+- Then Build.
