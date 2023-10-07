@@ -68,3 +68,6 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 # create Jenkins agent
 sudo docker run -d --rm --name=agent1 -p 256:22 -e "JENKINS_AGENT_SSH_PUBKEY=$(cat ~/.ssh/id_rsa.pub)" jenkins/ssh-agent:alpine
+
+# install trivy
+sudo curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin v0.18.3
