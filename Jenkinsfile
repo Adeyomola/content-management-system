@@ -35,6 +35,7 @@ pipeline {
 		        sh "echo ${env.dockerhubPassword} | docker login -u ${env.dockerhubUser} --password-stdin"
                         sh "docker tag wp adeyomola/wordpress"
 		        sh "docker push adeyomola/wordpress"
+			sh "docker logout"
                     }
                  }
 	       }
@@ -107,11 +108,11 @@ pipeline {
             }
         }
     }
-    post {
-      always {
-        sh 'docker logout'
-        }
-    }
+//    post {
+//      always {
+//        sh 'docker logout'
+//        }
+//    }
 }
 
 
