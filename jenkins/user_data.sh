@@ -66,6 +66,12 @@ echo \
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
+#create docker group
+sudo groupadd docker
+
+# add Jenkins user to docker group
+sudo usermod -aG docker jenkins
+
 # create Jenkins agent
 sudo docker run -d --rm --name=agent1 -p 256:22 -e "JENKINS_AGENT_SSH_PUBKEY=$(cat ~/.ssh/id_rsa.pub)" jenkins/ssh-agent:alpine
 
