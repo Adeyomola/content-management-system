@@ -44,6 +44,20 @@ pipeline {
 	       }
             }
         }
+	stage("Static Application Security Testing") {
+	    steps {
+	      withSonarQubeEnv(installationName: "sq1") {
+		sh 	
+	       }
+	    }
+	}
+        stage("Quality Gate") {
+            steps {
+              timeout(time:2, unit: "MINUTES") {
+                waitForQualityGate abortPipeline: true
+               }
+            }
+        }
         stage("Create Cluster With Prometheus and Grafana") {
             steps {
                 script {

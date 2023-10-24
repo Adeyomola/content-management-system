@@ -72,8 +72,11 @@ sudo groupadd docker
 # add Jenkins user to docker group
 sudo usermod -aG docker jenkins
 
+# create ssh key on master
+ssh-keygen -t ed25519 -N " " -f ~/.ssh/id_ed25519
+
 # create Jenkins agent
-sudo docker run -d --rm --name=agent1 -p 256:22 -e "JENKINS_AGENT_SSH_PUBKEY=$(cat ~/.ssh/id_rsa.pub)" jenkins/ssh-agent:alpine
+sudo docker run -d --rm --name=agent1 -p 256:22 -e "JENKINS_AGENT_SSH_PUBKEY=$(cat ~/.ssh/id_ed25519.pub)" jenkins/ssh-agent:alpine
 
 # install trivy
 sudo curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin v0.18.3

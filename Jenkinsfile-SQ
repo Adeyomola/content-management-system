@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+    stages {
+      stage("Static Application Security Testing") {
+            steps {
+              withSonarQubeEnv(installationName: "sq1") {
+                sh 'clean package sonar:sonar'
+               }
+            }
+        }
+    }
+}
