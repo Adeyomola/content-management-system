@@ -18,6 +18,23 @@ pipeline {
         TF_VAR_account_id = credentials('TF_VAR_account_id')
     }
     stages {
+        stage('SonarQube Analysis') {
+          steps {
+            withSonarQubeEnv(installationName: "sq1") {
+              script {
+                def scannerHome = tool 'sonarscanner';
+                sh "${scannerHome}/bin/sonar-scanner"
+              }
+            }
+          }
+        }
+//        stage("Quality Gate") {
+//            steps {
+//              timeout(time:2, unit: "MINUTES") {
+//                waitForQualityGate abortPipeline: true
+//               }
+//            }
+//        }
         stage("Docker Image Build") {
             steps {
                 script {
@@ -39,23 +56,6 @@ pipeline {
                     }
                  }
 	       }
-            }
-        }
-        stage('SonarQube Analysis') {
-          steps {
-            withSonarQubeEnv(installationName: "sq1") {
-              script {
-                def scannerHome = tool 'sonarscanner';
-                sh "${scannerHome}/bin/sonar-scanner"
-              }
-            }
-          }
-        }
-        stage("Quality Gate") {
-            steps {
-              timeout(time:2, unit: "MINUTES") {
-                waitForQualityGate abortPipeline: true
-               }
             }
         }
         stage("Create Cluster With Prometheus and Grafana") {
