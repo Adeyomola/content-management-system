@@ -1,15 +1,11 @@
 pipeline {
     agent any
-    tools {
-        sonar-scanner 'sonarscanner'
-    }
     stages {
-      stage("Static Application Security Testing") {
-            steps {
-              withSonarQubeEnv(installationName: "sq1") {
-                sh 'sonar-scanner'
-               }
-            }
+      stage('SonarQube Analysis') {
+        def scannerHome = tool 'sonarscanner';
+        withSonarQubeEnv() {
+          sh "${scannerHome}/bin/sonar-scanner"
         }
+      }
     }
 }
