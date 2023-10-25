@@ -18,7 +18,7 @@ pipeline {
         TF_VAR_account_id = credentials('TF_VAR_account_id')
     }
     stages {
-        stage('SonarQube Analysis') {
+        stage('Static Application Security Testing - SonarQube') {
           steps {
             withSonarQubeEnv(installationName: "sq1") {
               script {
@@ -58,7 +58,7 @@ pipeline {
 	       }
             }
         }
-        stage("Create Cluster With Prometheus and Grafana") {
+        stage("Create EKS Cluster") {
             steps {
                 script {
                     dir("provision") {
@@ -71,7 +71,7 @@ pipeline {
                 timeout(time: 20, unit: 'MINUTES')
             }
         }
-        stage("Install Let'sEncrypt Certificate") {
+        stage("Install Let'sEncrypt SSL Certificate") {
             steps {
                 script {
                     dir("ssl") {
@@ -94,7 +94,7 @@ pipeline {
                 }
             }
         }
-        stage("Ingress Controller") {
+        stage("Deploy Ingress Controller") {
             steps {
                 script {
                     dir("alb") {
@@ -122,7 +122,7 @@ pipeline {
                  }
              }
         }
-        stage("Deploy App") {
+        stage("Deploy App with Logging and Monitoring - Prometheus and ELK Stack") {
             steps {
                 script {
                     dir("deploy") {
@@ -133,11 +133,6 @@ pipeline {
             }
         }
     }
-//    post {
-//      always {
-//        sh 'docker logout'
-//        }
-//    }
 }
 
 
