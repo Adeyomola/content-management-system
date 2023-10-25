@@ -2,7 +2,11 @@
 
 #install Java
 sudo apt update
-sudo apt install openjdk-11-jdk -y
+sudo apt install openjdk-17-jdk openjdk-17-jre -y
+
+#install nodejs for SAST
+sudo apt update
+sudo apt install nodejs -y
 
 #install Jenkins
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
