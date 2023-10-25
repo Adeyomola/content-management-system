@@ -11,14 +11,11 @@ pipeline {
         ANSIBLE_VAULT_PASSWORD_FILE = credentials('ANSIBLE_VAULT_PASSWORD_FILE')
         TF_VAR_db_user = credentials ('TF_VAR_db_user')
         TF_VAR_db_password = credentials ('TF_VAR_db_password')
-//        TF_VAR_db_user_d = credentials ('TF_VAR_db_user_d')
- //       TF_VAR_db_password_d = credentials ('TF_VAR_db_password_d')
         TF_VAR_db_name = credentials ('TF_VAR_db_name')
         TF_VAR_db_port = credentials ('TF_VAR_db_port')
         TF_VAR_arn = credentials ('TF_VAR_arn')
         TF_VAR_email = credentials('TF_VAR_email')
         TF_VAR_account_id = credentials('TF_VAR_account_id')
-//	DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
     stages {
         stage("Docker Image Build") {
@@ -44,13 +41,16 @@ pipeline {
 	       }
             }
         }
-	stage("Static Application Security Testing") {
-	    steps {
-	      withSonarQubeEnv(installationName: "sq1") {
-		sh 	
-	       }
-	    }
-	}
+        stage('SonarQube Analysis') {
+          steps {
+            withSonarQubeEnv(installationName: "sq1") {
+              script {
+                def scannerHome = tool 'sonarscanner';
+                sh "${scannerHome}/bin/sonar-scanner"
+              }
+            }
+          }
+        }
         stage("Quality Gate") {
             steps {
               timeout(time:2, unit: "MINUTES") {
