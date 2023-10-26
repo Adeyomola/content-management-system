@@ -1,13 +1,13 @@
 ---
 replicas: 1
 minimumMasterNodes: 1
-resources:
-  requests:
-    cpu: "100m"
-    memory: "512M"
-  limits:
-    cpu: "1000m"
-    memory: "512M"
+#resources:
+#  requests:
+#    cpu: "1000m"
+#    memory: "2Gi"
+#  limits:
+#    cpu: "1000m"
+#    memory: "2Gi"
 volumeClaimTemplate:
   accessModes: [ "ReadWriteOnce" ]
   storageClassName: "standard"
@@ -16,5 +16,3 @@ volumeClaimTemplate:
       storage: 100M
 #antiAffinity: "soft"
 #esJavaOpts: "-Xmx128m -Xms128m"
-#protocol: http
-clusterHealthCheckParams: "local=true"
