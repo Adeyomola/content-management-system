@@ -5,7 +5,6 @@ resource "helm_release" "elasticsearch" {
   repository       = "https://helm.elastic.co"
   chart            = "elasticsearch"
   wait             = false
-  version = 
 }
 
 resource "helm_release" "logstash" {
