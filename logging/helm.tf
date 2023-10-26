@@ -3,9 +3,10 @@ resource "helm_release" "elasticsearch" {
   create_namespace = true
   namespace        = "logging"
   repository       = "https://helm.elastic.co"
-  chart            = "elasticsearch"
+  chart            = "eck-elasticsearch"
   wait             = false
-  values           = ["${file("./manifests/values.yml")}"]
+#  values           = ["${file("./manifests/values.yml")}"]
+#  version          = "8.5.1"
 }
 
 resource "helm_release" "logstash" {

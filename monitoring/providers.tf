@@ -26,11 +26,6 @@ terraform {
   required_version = "~> 1.3"
 }
 
-
-#provider "aws" {
-#  region = "eu-west-1"
-#}
-
 provider "helm" {
   kubernetes {
     host                   = data.terraform_remote_state.eks.outputs.cluster_endpoint

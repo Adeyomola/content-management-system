@@ -17,6 +17,10 @@ terraform {
   }
 
   required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.7.0"
+    }
     kubectl = {
       source  = "gavinbunney/kubectl"
       version = ">= 1.14.0"
@@ -31,9 +35,9 @@ terraform {
 }
 
 
-#provider "aws" {
-#  region = "eu-west-1"
-#}
+provider "aws" {
+  region = "eu-west-1"
+}
 
 provider "kubernetes" {
   host                   = data.terraform_remote_state.eks.outputs.cluster_endpoint

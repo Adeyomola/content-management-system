@@ -6,8 +6,8 @@ resources:
     cpu: "1000m"
     memory: "512M"
 volumeClaimTemplate:
-  accessModes: ["ReadWriteOnce"]
-  storageClassName: "ebs-sc"
+  accessModes: [""]
+  storageClassName: ""
   resources:
     requests:
-      storage: 5Gi
+      storage:
