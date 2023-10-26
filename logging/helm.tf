@@ -5,7 +5,7 @@ resource "helm_release" "elasticsearch" {
   repository       = "https://helm.elastic.co"
   chart            = "elasticsearch"
   wait             = false
-  values           = ["${file("./manifests/values.yml")}"]
+  values           = ["${file("values.yml")}"]
 #  version          = "8.5.1"
 }
 
