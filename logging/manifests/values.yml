@@ -1,3 +1,6 @@
+---
+antiAffinity: "soft"
+esJavaOpts: "-Xmx128m -Xms128m"
 resources:
   requests:
     cpu: "100m"
@@ -6,8 +9,8 @@ resources:
     cpu: "1000m"
     memory: "512M"
 volumeClaimTemplate:
-  accessModes: [""]
-  storageClassName: ""
+  accessModes: [ "ReadWriteOnce" ]
+  storageClassName: "standard"
   resources:
     requests:
-      storage:
+      storage: 100M
