@@ -28,6 +28,26 @@ pipeline {
                 }
             }
         }
+        stage("Destroy ELK Stack) {
+            steps {
+                script {
+                    dir("logging") {
+                        sh "terraform init"
+                        sh "terraform destroy -auto-approve"
+                    }
+                }
+            }
+        }
+        stage("Destroy Prometheus and Grafana") {
+            steps {
+                script {
+                    dir("monitoring") {
+                        sh "terraform init"
+                        sh "terraform destroy -auto-approve"
+                    }
+                }
+            }
+        }
         stage("Destroy Ingress Controller") {
             steps {
                 script {
