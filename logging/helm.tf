@@ -5,6 +5,7 @@ resource "helm_release" "elasticsearch" {
   repository       = "https://helm.elastic.co"
   chart            = "elasticsearch"
   wait             = false
+  version = 
 }
 
 resource "helm_release" "logstash" {
@@ -16,11 +17,11 @@ resource "helm_release" "logstash" {
   wait             = false
 }
 
-#resource "helm_release" "kibana" {
-#  name             = "kibana"
-#  create_namespace = true
-#  namespace        = "logging"
-#  repository       = "https://helm.elastic.co"
-#  chart            = "kibana"
-#  wait             = false
-#}
+resource "helm_release" "kibana" {
+  name             = "kibana"
+  create_namespace = true
+  namespace        = "logging"
+  repository       = "https://helm.elastic.co"
+  chart            = "kibana"
+  wait             = false
+}
