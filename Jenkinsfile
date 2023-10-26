@@ -114,7 +114,7 @@ pipeline {
                 }
             }
         }
-        stage("Deploy ELK Stack for Logging) {
+        stage("Deploy ELK Stack for Logging") {
             steps {
                 script {
                     dir("logging") {
