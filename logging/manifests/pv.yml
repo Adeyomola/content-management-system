@@ -3,8 +3,10 @@ kind: PersistentVolume
 metadata:
  name: es-0
  namespace: logging
+ labels:
+   type: local
 spec:
- storageClassName: "gp2"
+ storageClassName: "ebs-sc"
  capacity:
    storage: 1Gi
  accessModes:
@@ -17,8 +19,10 @@ kind: PersistentVolume
 metadata:
  name: es-1
  namespace: logging
+ labels:
+   type: local
 spec:
- storageClassName: "gp2"
+ storageClassName: "ebs-sc"
  capacity:
    storage: 1Gi
  accessModes:
@@ -31,8 +35,10 @@ kind: PersistentVolume
 metadata:
  name: es-2
  namespace: logging
+ labels:
+   type: local
 spec:
- storageClassName: "gp2"
+ storageClassName: "ebs-sc"
  capacity:
    storage: 1Gi
  accessModes:
