@@ -7,7 +7,6 @@ resources:
     memory: "512M"
 volumeClaimTemplate:
   accessModes: ["ReadWriteOnce"]
-  storageClassName: manual
   resources:
     requests:
       storage: 5Gi
