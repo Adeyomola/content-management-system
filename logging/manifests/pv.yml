@@ -1,0 +1,38 @@
+kind: PersistentVolume
+metadata:
+ name: es-0
+ namespace: logging
+spec:
+ capacity:
+   storage: 1Gi
+ accessModes:
+ - ReadWriteOnce
+ storageClassName: standard
+ hostPath:
+   path: /var/lib/docker/elasticsearch-0
+---
+kind: PersistentVolume
+metadata:
+ name: es-1
+ namespace: logging
+spec:
+ capacity:
+   storage: 1Gi
+ accessModes:
+ - ReadWriteOnce
+ storageClassName: standard
+ hostPath:
+   path: /var/lib/docker/elasticsearch-1
+---
+kind: PersistentVolume
+metadata:
+ name: es-2
+ namespace: logging
+spec:
+ capacity:
+   storage: 1Gi
+ accessModes:
+ - ReadWriteOnce
+ storageClassName: standard
+ hostPath:
+   path: /var/lib/docker/elasticsearch-2

@@ -104,6 +104,26 @@ pipeline {
                 }
             }
         }
+        stage("Deploy Prometheus and Grafana for Monitoring") {
+            steps {
+                script {
+                    dir("monitoring") {
+                        sh "terraform init"
+                        sh "terraform apply -auto-approve"
+                    }
+                }
+            }
+        }
+        stage("Deploy ELK Stack for Logging) {
+            steps {
+                script {
+                    dir("logging") {
+                        sh "terraform init"
+                        sh "terraform apply -auto-approve"
+                    }
+                }
+            }
+        }
 //        stage("Deploy DB") {
 //           steps {
 //                script {
@@ -122,7 +142,7 @@ pipeline {
                  }
              }
         }
-        stage("Deploy App with Logging and Monitoring - Prometheus and ELK Stack") {
+        stage("Deploy App") {
             steps {
                 script {
                     dir("deploy") {
