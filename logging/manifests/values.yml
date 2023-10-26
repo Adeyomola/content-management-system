@@ -1,0 +1,13 @@
+resources:
+  requests:
+    cpu: "200m"
+    memory: "2Gi"
+  limits:
+    cpu: "1000m"
+    memory: "2Gi"
+volumeClaimTemplate:
+  accessModes: ["ReadWriteOnce"]
+  storageClassName: gp2
+  resources:
+    requests:
+      storage: 5Gi

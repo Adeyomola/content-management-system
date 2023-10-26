@@ -5,6 +5,7 @@ resource "helm_release" "elasticsearch" {
   repository       = "https://helm.elastic.co"
   chart            = "elasticsearch"
   wait             = false
+  values           = ["${file("./manifests/values.yml")}"]
 }
 
 resource "helm_release" "logstash" {
