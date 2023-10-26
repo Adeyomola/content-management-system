@@ -1,13 +1,13 @@
 resources:
   requests:
-    cpu: "200m"
-    memory: "2Gi"
+    cpu: "100m"
+    memory: "512M"
   limits:
     cpu: "1000m"
-    memory: "2Gi"
+    memory: "512M"
 volumeClaimTemplate:
   accessModes: ["ReadWriteOnce"]
-  storageClassName: standard
+  storageClassName: manual
   resources:
     requests:
       storage: 5Gi
