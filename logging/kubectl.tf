@@ -2,11 +2,11 @@ data "kubectl_path_documents" "manifests" {
   pattern = "${path.module}/manifests/*.yml"
 }
 
-resource "kubernetes_namespace" "namespaces" {
-  metadata {
-    name = "logging"
-  }
-}
+#resource "kubernetes_namespace" "namespaces" {
+#  metadata {
+#    name = "logging"
+#  }
+#}
 
 resource "kubectl_manifest" "deploy" {
   depends_on = [kubernetes_namespace.namespaces]
