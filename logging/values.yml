@@ -14,6 +14,7 @@ volumeClaimTemplate:
   resources:
     requests:
       storage: 100M
-antiAffinity: "soft"
-esJavaOpts: "-Xmx128m -Xms128m"
-protocol: http
+#antiAffinity: "soft"
+#esJavaOpts: "-Xmx128m -Xms128m"
+#protocol: http
+clusterHealthCheckParams: "local=true"
