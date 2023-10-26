@@ -9,7 +9,7 @@ data "kubectl_path_documents" "manifests" {
 #}
 
 resource "kubectl_manifest" "deploy" {
-  depends_on = [kubernetes_namespace.namespaces]
+#  depends_on = [kubernetes_namespace.namespaces]
   for_each   = toset(data.kubectl_path_documents.manifests.documents)
   yaml_body  = each.value
 }

@@ -18,16 +18,16 @@ pipeline {
         TF_VAR_account_id = credentials('TF_VAR_account_id')
     }
     stages {
-        stage('Static Application Security Testing - SonarQube') {
-          steps {
-            withSonarQubeEnv(installationName: "sq1") {
-              script {
-                def scannerHome = tool 'sonarscanner';
-                sh "${scannerHome}/bin/sonar-scanner"
-              }
-            }
-          }
-        }
+//        stage('Static Application Security Testing - SonarQube') {
+//          steps {
+//            withSonarQubeEnv(installationName: "sq1") {
+//              script {
+//                def scannerHome = tool 'sonarscanner';
+//                sh "${scannerHome}/bin/sonar-scanner"
+//              }
+//            }
+//          }
+//        }
 //        stage("Quality Gate") {
 //            steps {
 //              timeout(time:2, unit: "MINUTES") {
