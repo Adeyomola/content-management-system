@@ -1,6 +1,6 @@
 ---
-antiAffinity: "soft"
-esJavaOpts: "-Xmx128m -Xms128m"
+#antiAffinity: "soft"
+#esJavaOpts: "-Xmx128m -Xms128m"
 resources:
   requests:
     cpu: "100m"
