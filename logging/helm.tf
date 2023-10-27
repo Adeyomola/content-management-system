@@ -24,5 +24,5 @@ resource "helm_release" "kibana" {
   namespace        = "logging"
   repository       = "https://helm.elastic.co"
   chart            = "kibana"
-  wait             = true
+  wait             = false
 }
