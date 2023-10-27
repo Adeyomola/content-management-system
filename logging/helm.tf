@@ -18,11 +18,11 @@ resource "helm_release" "logstash" {
   wait             = false
 }
 
-#resource "helm_release" "kibana" {
-#  name             = "kibana"
-#  create_namespace = true
-#  namespace        = "logging"
-#  repository       = "https://helm.elastic.co"
-#  chart            = "kibana"
-#  wait             = true
-#}
+resource "helm_release" "kibana" {
+  name             = "kibana"
+  create_namespace = true
+  namespace        = "logging"
+  repository       = "https://helm.elastic.co"
+  chart            = "kibana"
+  wait             = true
+}
