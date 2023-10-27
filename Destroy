@@ -28,7 +28,7 @@ pipeline {
                 }
             }
         }
-        stage("Destroy ELK Stack) {
+        stage("Destroy ELK Stack") {
             steps {
                 script {
                     dir("logging") {
