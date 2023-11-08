@@ -25,4 +25,5 @@ resource "helm_release" "kibana" {
   repository       = "https://helm.elastic.co"
   chart            = "kibana"
   wait             = false
+  values           = ["${file("value.yml")}"]
 }
