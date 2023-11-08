@@ -37,6 +37,9 @@ pipeline {
                     }
                 }
             }
+                options {
+                    retry(2)
+                }
         }
         stage("Destroy Prometheus and Grafana") {
             steps {
