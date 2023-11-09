@@ -14,8 +14,12 @@
 # Screenshots
 ## Logging (Elastic Stack)
 ![Overview](./logging/overview.png)
+
 ![Log Stream](./logging/stream.png)
+
 ![More Log Stream](./logging/stream1.png)
+
+![GET Requests on Elasticsearch](logging/GET_requests_on_elastic.png)
 ## Monitoring (Prometheus and Grafana)
 
 ## Jenkins
