@@ -1,10 +1,11 @@
+# Quick Links
 * [Repo Overview](#jenkins-cicd-pipeline-for-wordpress)
 * [Screenshots](#screenshots)
-  - [Logging]()
-  - [Monitoring()
-  - [Jenkins]()
-  - [SonarQube]()
-  - [Trivy]()
+  - [Logging](#logging-elastic-stack)
+  - [Monitoring](#monitoring-prometheus-and-grafana)
+  - [Jenkins](#jenkins)
+  - [SonarQube](#sonarqube)
+  - [Trivy](#trivy)
 * [Usage](#how-to-use-it)
 
 # Jenkins CI/CD Pipeline for Wordpress
