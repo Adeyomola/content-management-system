@@ -25,5 +25,13 @@ resource "helm_release" "kibana" {
   repository       = "https://helm.elastic.co"
   chart            = "kibana"
   wait             = false
-#  values           = ["${file("value.yml")}"]
+}
+
+resource "helm_release" "filebeat" {
+  name             = "filebeat"
+  create_namespace = true
+  namespace        = "logging"
+  repository       = "https://helm.elastic.co"
+  chart            = "filebeat"
+  wait             = false
 }
