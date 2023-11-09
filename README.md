@@ -31,11 +31,13 @@
 
 ![Pronetheus Stats](monitoring/prometheus_stats.png)
 ## Jenkins
+![](jenkins/Jenkins.png)
 
+![](jenkins/Jenkins_1.png)
 ## SonarQube
-
+![](jenkins/sonarqube.png)
 ## Trivy
-
+![](jenkins/trivy.png)
 
 # How to Use It
 ## ANSIBLE VARIABLES
