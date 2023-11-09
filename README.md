@@ -1,3 +1,6 @@
+* [Repo Overview](#jenkins-cicd-pipeline-for-wordpress)
+* [Screenshots](#screenshots)
+
 # Jenkins CI/CD Pipeline for Wordpress
 - This repo contains the source for a Jenkins CI/CD Pipeline that integrates and deploys WordPress on AWS EKS
 - The pipeline script builds a container image of our custom WordPress installation using Docker.
