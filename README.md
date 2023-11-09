@@ -13,7 +13,7 @@
 
 # Screenshots
 ## Logging (Elastic Stack)
-
+![Overview](./logging/log overview.png)
 ## Monitoring (Prometheus and Grafana)
 
 ## Jenkins
