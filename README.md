@@ -21,7 +21,15 @@
 
 ![GET Requests on Elasticsearch](logging/GET_requests.png)
 ## Monitoring (Prometheus and Grafana)
+![Cluster](monitoring/cluster.png)
 
+![Node Exporter Full](monitoring/node_exporter_full.png)
+
+![Nodes](monitoring/nodes.png)
+
+![Prom Alerts](monitoring/prometheus_alerts.png)
+
+![Pronetheus Stats](monitoring/prometheus_stats.png)
 ## Jenkins
 
 ## SonarQube
