@@ -19,7 +19,7 @@
 
 ![More Log Stream](./logging/stream1.png)
 
-![GET Requests on Elasticsearch](logging/GET_requests_on_elastic.png)
+![GET Requests on Elasticsearch](logging/GET_requests.png)
 ## Monitoring (Prometheus and Grafana)
 
 ## Jenkins
