@@ -1,12 +1,26 @@
 # Jenkins CI/CD Pipeline for Wordpress
 - This repo contains the source for a Jenkins CI/CD Pipeline that integrates and deploys WordPress on AWS EKS
-- The Pipeline script builds a container image of our custom WordPress installation using Docker.
+- The pipeline script builds a container image of our custom WordPress installation using Docker.
 - Then it pushes the image to Docker Hub.
-- Then it provisions an EKS Kubernetes cluster on AWS.
-- After that, it creates a Let's Encrypt SSL Certificate.
-- Then it provisions an application load balancer on AWS using Terraform
+- Then it provisions an EKS Kubernetes cluster on AWS using Terraform.
+- After that, it creates a Let's Encrypt SSL Certificate still using Terraform.
+- Sensitive data are passed to the cluster by converting Ansible Jinja2 template files to regular files while passing secrets to them from Ansible Vault
+- Then it provisions an AWS load balancer controller on AWS using Terraform and Helm
+- Afterwards, it deploys Prometheus and Grafana for monitoring using Terraform and Helm charts.
+- Using Terraform and Helm again, it deploys the Elastic Stack (Elasticsearch, Logstash, Kibana, and Filebeat)
 - Next, it scans the docker image for vulnerabilities using Trivy.
 - Then it deploys WordPress.
+
+# Screenshots
+## Logging (Elastic Stack)
+
+## Monitoring (Prometheus and Grafana)
+
+## Jenkins
+
+## SonarQube
+
+## Trivy
 
 
 # How to Use It
