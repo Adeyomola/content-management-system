@@ -9,7 +9,7 @@
 * [Usage](#how-to-use-it)
 
 # Jenkins CI/CD Pipeline for Wordpress
-- This repo contains the source for a Jenkins CI/CD Pipeline that integrates and deploys WordPress on AWS EKS
+- This repo contains the source for a Jenkins CI/CD Pipeline that integrates and deploys WordPress on AWS EKS with **monitoring**, **logging**, **static application security testing**, and **container vulnerability scanning**
 - The pipeline script builds a container image of our custom WordPress installation using Docker.
 - Then it pushes the image to Docker Hub.
 - Then it provisions an EKS Kubernetes cluster on AWS using Terraform.
