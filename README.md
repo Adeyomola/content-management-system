@@ -22,6 +22,8 @@
 - Then it deploys WordPress.
 
 # Screenshots
+## The CMS (WordPress)
+![Screenshot (263)](https://github.com/Adeyomola/content-management-system/assets/44479277/da5bd40c-4eab-40b3-9a23-8d6f8bd8a402)
 ## Logging (Elastic Stack)
 ![Overview](./logging/overview.png)
 
